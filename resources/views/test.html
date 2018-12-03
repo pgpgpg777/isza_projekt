@@ -32,28 +32,46 @@
         .container{
             padding-top: 40px;
         }
+        .chk{
+            padding: 10px;
+        }
         #cim {
             font-weight: bold;
         }
 
     </style>
     <script>
+        var a = 1;
+        var q = 1;
         function addansw(){
             var container = document.getElementById("valaszok");
             var input = document.createElement("input");
+            var check = document.createElement("input");
             input.type = 'text';
+            check.type = 'checkbox'
+            input.name = q + 'valasz' + a;
+            check.name = q + 'jovagyrossz' + a;
+            a++;
             input.classList.add('form-control');
+            input.classList.add('col-lg-6');
+            check.classList.add('form-control');
+            check.classList.add('form-check');
+            check.classList.add('chk');
             container.appendChild(input);
+            container.appendChild(check);
             container.appendChild(document.createElement("br"));
             container.appendChild(document.createElement("br"));
         }
         function addq(){
-            var container = document.getElementById("peldak");
-            var input = document.createElement("div");
-            input.innerHTML = document.getElementById("kerdes").value;
+            var container = document.getElementById("valaszok");
+            var input = document.createElement("input");
+            input.type = 'text';
+            input.name = q + 'kerdes';
+            input.classList.add('form-control');
+            input.classList.add('col-lg-12');
             container.appendChild(input);
             container.appendChild(document.createElement("br"));
-
+            q++;
         }
     </script>
 </head>
@@ -98,7 +116,7 @@
 <div class="container">
     <div class="row">
 
-        <div class="col-lg-6">
+        <div class="col-lg-offset-1 col-lg-10 ">
             <h2>Teszt készítése</h2>
             <form>
                 <div class="form-group">
@@ -115,33 +133,21 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    <label>Komponensek hozzáadása</label>
+                    <label>Komponensek hozzáadása (jelölje be a helyes válaszokat a checkboxokban.)</label>
                 </div>
-                <div class="form-group">
-                    <label>Kérdés</label>
-                    <input type="text" class="form-control" id="kerdes" placeholder="Melyik a helyes válasz?" value="">
+                <div id="valaszok">
+
                 </div>
-                <button type="button" class="btn btn-default" onclick="addansw()    ">Válasz hozzáadása</button><br><br>
-                <div id="valaszok"></div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Több megoldás is helyes lehet?</label>
-                </div>
-                <button type="button" class="btn btn-success" onclick="addq()">Kérdés hozzáadása</button><br><br>
-                <hr>
+                <button type="button" class="btn btn-primary" onclick="addq()">Új kérdés hozzáadása</button><br><br>
+                <button type="button" class="btn btn-primary" onclick="addansw()">Válasz hozzáadása</button><br><br>
+
+              <hr>
                 <button type="button" class="btn btn-default">Mentés</button><br>
             </form>
         </div>
-        <div class="col-lg-6">
-            <h2>Előlnézet</h2>
-            <div id="cim"></div><br>
-            <div id="leiras"></div><br>
-            <div id="peldak">
-
-            </div>
-        </div>
     </div>
 </div>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
