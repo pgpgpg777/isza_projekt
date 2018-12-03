@@ -32,46 +32,42 @@
         .container{
             padding-top: 40px;
         }
-        .chk{
-            padding: 10px;
-        }
-        #cim {
-            font-weight: bold;
-        }
 
     </style>
     <script>
         var a = 1;
-        var q = 1;
+        var q = 0;
+
         function addansw(){
             var container = document.getElementById("valaszok");
             var input = document.createElement("input");
             var check = document.createElement("input");
             input.type = 'text';
             check.type = 'checkbox'
-            input.name = q + 'valasz' + a;
-            check.name = q + 'jovagyrossz' + a;
-            a++;
+            input.name = q.toString() + 'valasz' + a.toString();
+            check.name = q.toString() + 'jovagyrossz' + a.toString();
             input.classList.add('form-control');
             input.classList.add('col-lg-6');
             check.classList.add('form-control');
             check.classList.add('form-check');
             check.classList.add('chk');
+            check.classList.add('col-lg-6');
             container.appendChild(input);
             container.appendChild(check);
             container.appendChild(document.createElement("br"));
             container.appendChild(document.createElement("br"));
+            a++;
         }
         function addq(){
+            q++;
             var container = document.getElementById("valaszok");
             var input = document.createElement("input");
             input.type = 'text';
-            input.name = q + 'kerdes';
+            input.name = q.toString() + 'kerdes';
             input.classList.add('form-control');
             input.classList.add('col-lg-12');
             container.appendChild(input);
             container.appendChild(document.createElement("br"));
-            q++;
         }
     </script>
 </head>
@@ -115,21 +111,20 @@
 
 <div class="container">
     <div class="row">
-
-        <div class="col-lg-offset-1 col-lg-10 ">
+        <div class="offset-lg-1 col-lg-10 ">
             <h2>Teszt készítése</h2>
-            <form>
+            <form method="post" action="http://localhost:3000/upload">
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Teszt neve</label>
-                    <input type="text" class="form-control" onkeyUp="document.getElementById('cim').innerHTML = this.value" id="exampleFormControlInput1" placeholder="Irodalom óra segédanyagok">
+                    <label for="test_name">Teszt neve</label>
+                    <input type="text" class="form-control"  id="test_name" name="test_name" placeholder="Irodalom óra segédanyagok">
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput1">Diákok, csoportok hozzárendelése</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="8.A, Gipsz Jakab">
+                    <label for="teams">Diákok, csoportok hozzárendelése</label>
+                    <input type="text" class="form-control" id="teams" name="teams" placeholder="8.A">
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Leírás</label>
-                    <textarea class="form-control" onkeyUp="document.getElementById('leiras').innerHTML = this.value" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="description">Leírás</label>
+                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
                 </div>
                 <hr>
                 <div class="form-group">
@@ -142,7 +137,7 @@
                 <button type="button" class="btn btn-primary" onclick="addansw()">Válasz hozzáadása</button><br><br>
 
               <hr>
-                <button type="button" class="btn btn-default">Mentés</button><br>
+                <button type="submit" class="btn btn-default">Mentés</button><br>
             </form>
         </div>
     </div>
